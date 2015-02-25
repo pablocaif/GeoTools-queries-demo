@@ -19,6 +19,7 @@ public class GeoToolsQueries {
     private FileDataStore dataStore;
     private SimpleFeatureSource featureSource;
 
+    //Constructor
     public GeoToolsQueries()  {
         try {
             initDataStore();
@@ -28,6 +29,7 @@ public class GeoToolsQueries {
         }
     }
 
+    //Geospatial queries
     public SimpleFeatureCollection findFeaturesBySuburb() throws Exception {
         Filter filter = ECQL.toFilter("SA2_NAME11 = 'Melbourne'");
         SimpleFeatureCollection result =  featureSource.getFeatures(filter);
@@ -75,8 +77,10 @@ public class GeoToolsQueries {
                     feature.getAttribute("ALBERS_SQM")
             );
         }
+        featureIterator.close();
     }
 
+    //Connect to the Shapefiles
     private void initDataStore() throws Exception{
         ClassLoader classLoader = GeoToolsQueries.class.getClassLoader();
         //We load the files from the ABS

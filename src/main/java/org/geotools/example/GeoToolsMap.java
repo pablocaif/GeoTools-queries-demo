@@ -110,6 +110,7 @@ public class GeoToolsMap {
         mapFrame.setSize(850, 700);
         mapFrame.setVisible(true);
 
+        //Queries buttons
         JButton runQueryBySuburb = new JButton("Query by suburb");
         toolBar.addSeparator();
         toolBar.add(runQueryBySuburb);
