@@ -25,9 +25,10 @@ public class GeoToolsQueries {
             initDataStore();
             initFeatureSource();
         } catch (Exception ex) {
-           throw new IllegalStateException("Error initializing Geotools queries", ex);
+            throw new IllegalStateException("Error initializing Geotools queries", ex);
         }
     }
+
 
     //Geospatial queries
     public SimpleFeatureCollection findFeaturesBySuburb() throws Exception {
@@ -62,7 +63,7 @@ public class GeoToolsQueries {
 
         return result;
     }
-
+    //Print features
     private void printFeatureCollection(SimpleFeatureCollection result) {
         SimpleFeatureIterator featureIterator = result.features();
 
@@ -97,4 +98,5 @@ public class GeoToolsQueries {
     public SimpleFeatureSource getFeatureSource() {
         return featureSource;
     }
+
 }

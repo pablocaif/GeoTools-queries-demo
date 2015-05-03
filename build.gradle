@@ -16,6 +16,34 @@ dependencies {
     compile "org.geotools:gt-epsg-hsql:${geoToolsVersion}"
     compile "org.geotools:gt-shapefile:${geoToolsVersion}"
     compile "org.geotools:gt-swing:${geoToolsVersion}"
+}
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}
 
+task uberJar (type: Jar, dependsOn: [':compileJava', ':processResources']){
+    from(configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }) {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    from('build/classes/main')
+    from('build/resources/main')
+
+    manifest {
+        attributes 'Implementation-Title': 'GeoTools Queries',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Main-Class': 'org.geotools.example.GeoToolsMap'
+    }
 }
